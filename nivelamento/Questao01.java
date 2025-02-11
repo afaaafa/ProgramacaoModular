@@ -2,28 +2,45 @@ import java.util.Scanner;
 
 
 public class Questao01 {
+
+  static Scanner teclado;
+
+  public static int lerInteiro(String mensagem) {
+    System.out.print(mensagem);
+    int num = Integer.parseInt(teclado.nextLine());
+    return num;
+  }
+
+  public static void imprimirLinhaCheia(int tamanho) {
+    for (int i = 0; i < tamanho; i++){
+      System.out.print("X");
+    }
+    System.out.println();
+  }
+
+  public static void imprimirLinhaEspacos(int tamanho) {
+    System.out.print("X");
+    for(int i = 0; i < tamanho - 2; i++){
+      System.out.print(" ");
+    }
+    System.out.println("X");
+
+  }
+
   public static void main(String[] args){
     int largura, altura;
-    Scanner teclado = new Scanner(System.in);
+    teclado = new Scanner(System.in);
 
-    System.out.print("Digite a largura do retângulo: ");
-    largura = teclado.nextInt();
-
-    System.out.print("Digite a altura do retângulo: ");
-    altura = teclado.nextInt();
+    largura = lerInteiro("Digite a largura do retângulo: ");
+    altura = lerInteiro("Digite a altura do retângulo: ");
 
     System.out.println();
 
-    for(int i = 0; i < altura; i++){
-      for(int j = 0; j < largura; j++){
-        if(i == 0 || i == altura - 1 || j == 0 || j == largura - 1)
-          System.out.print("X");
-        else
-          System.out.print(" ");
-      }
-
-      System.out.println();
+    imprimirLinhaCheia(largura);
+    for(int i = 0; i < altura - 2; i++){
+      imprimirLinhaEspacos(largura);
     }
+    imprimirLinhaCheia(largura);
 
     System.out.println();
 

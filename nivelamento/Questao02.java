@@ -1,8 +1,15 @@
 import java.util.Scanner;
 
 public class Questao02 {
+  static Scanner teclado;
 
-  public static int menu(Scanner teclado) {
+  public static int lerInteiro(String mensagem) {
+    System.out.print(mensagem);
+    int num = Integer.parseInt(teclado.nextLine());
+    return num;
+  }
+
+  public static int menu() {
     int opcao;
 
     System.out.println("\n1 - Somar dois números");
@@ -10,21 +17,16 @@ public class Questao02 {
     System.out.println("3 - Somar N números");
     System.out.println("4 - Contador de pares de uma sequência");
     System.out.println("0 - Sair");
-    System.out.print("Opção: ");
-
-    opcao = teclado.nextInt();
+    opcao = lerInteiro("Opção: ");
 
     return opcao;
   }
 
-  public static int somar(Scanner teclado) {
+  public static int somarDoisNumeros() {
     int num, num2, soma;
 
-    System.out.print("Digite o primeiro número: ");
-    num = teclado.nextInt();
-
-    System.out.print("Digite o segundo número: ");
-    num2 = teclado.nextInt();
+    num = lerInteiro("Digite o primeiro número: ");
+    num2 = lerInteiro("Digite o segundo número: ");
 
     soma = num + num2;
 
@@ -33,14 +35,11 @@ public class Questao02 {
     return soma;
   }
 
-  public static int maiorDosDois(Scanner teclado){
+  public static int maiorDosDois(){
     int num, num2;
 
-    System.out.print("Digite o primeiro número: ");
-    num = teclado.nextInt();
-
-    System.out.print("Digite o segundo número: ");
-    num2 = teclado.nextInt();
+    num = lerInteiro("Digite o primeiro número: ");
+    num2 = lerInteiro("Digite o segundo número: ");
 
     if(num > num2){
       System.out.println("O número " + num + " é maior que " + num2);
@@ -56,16 +55,13 @@ public class Questao02 {
     }
   }
 
-  public static int somarNnumeros(Scanner teclado){
+  public static int somarNnumeros(){
     int n, num, soma = 0;
 
-    System.out.print("Quantos números você quer somar: ");
-    n = teclado.nextInt();
+    n = lerInteiro("Quantos números você quer somar: ");
 
     for(int i = 0; i < n; i++){
-      System.out.print((i + 1) + " - Digite o número: ");
-      num = teclado.nextInt();
-
+      num = lerInteiro((i + 1) + " - Digite o número: ");
       soma += num;
     }
 
@@ -73,15 +69,13 @@ public class Questao02 {
     return soma;
   }
 
-  public static int contarPares(Scanner teclado){
+  public static int contarPares(){
     int n, num, pares = 0;
 
-    System.out.print("Qual o tamanho da sequência: ");
-    n = teclado.nextInt();
+    n = lerInteiro("Qual o tamanho da sequência: ");
 
     for(int i = 0; i < n; i++){
-      System.out.print((i + 1) + " - Digite o número: ");
-      num = teclado.nextInt();
+      num = lerInteiro((i + 1) + " - Digite o número: ");
 
       if(num % 2 == 0)
         pares++;
@@ -92,18 +86,18 @@ public class Questao02 {
   }
 
   public static void main(String[] args) {
-    Scanner teclado = new Scanner(System.in);
-    int opcao = menu(teclado);
+    teclado = new Scanner(System.in);
+    int opcao = menu();
 
     while (opcao != 0) {
       switch (opcao) {
-        case 1 -> somar(teclado);
-        case 2 -> maiorDosDois(teclado);
-        case 3 -> somarNnumeros(teclado);
-        case 4 -> contarPares(teclado);
+        case 1 -> somarDoisNumeros();
+        case 2 -> maiorDosDois();
+        case 3 -> somarNnumeros();
+        case 4 -> contarPares();
         default -> System.out.println("Opção inválida! Escolha novamente.");
       }
-      opcao = menu(teclado);
+      opcao = menu();
     }
 
     teclado.close();
