@@ -87,20 +87,21 @@ public class Questao02 {
 
   public static void main(String[] args) {
     teclado = new Scanner(System.in);
-    int opcao = menu();
+    int opcao;
 
-    while (opcao != 0) {
+    do {
+      opcao = menu();
       switch (opcao) {
         case 1 -> somarDoisNumeros();
         case 2 -> maiorDosDois();
         case 3 -> somarNnumeros();
         case 4 -> contarPares();
+        case 0 -> System.out.println("Programa encerrado.");
+
         default -> System.out.println("Opção inválida! Escolha novamente.");
       }
-      opcao = menu();
-    }
+    }while(opcao != 0);
 
     teclado.close();
-    System.out.println("Programa encerrado.");
   }
 }
