@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Questao04_05 {
+  static Scanner teclado;
 
   public static String criptografar(String mensagem){
     StringBuilder cripto = new StringBuilder();
@@ -22,7 +23,7 @@ public class Questao04_05 {
   }
 
 
-public static String descriptografar(String cripto) {
+  public static String descriptografar(String cripto) {
       cripto = cripto.replace("*", "");
       StringBuilder mensagem = new StringBuilder();
 
@@ -39,28 +40,47 @@ public static String descriptografar(String cripto) {
       return mensagem.toString();
     }
 
-  public static void main(String[] args){
+  public static int menu(){
     int opcao;
-    Scanner teclado = new Scanner(System.in);
-    String mensagem;
-
 
     System.out.println("1 - Criptografar");
     System.out.println("2 - Descriptografar");
-    System.out.print("--> Opção: ");
-    opcao = teclado.nextInt();
-    teclado.nextLine();
+    System.out.println("0 - Para sair do programa");
+    opcao = lerInteiro("---> Opção: ");
 
-    System.out.print("\nDigite a mensagem: ");
+    return opcao;
+  }
+
+  public static int lerInteiro(String mensagem) {
+    System.out.print(mensagem);
+    int num = Integer.parseInt(teclado.nextLine());
+    return num;
+  }
+
+  public static String lerMensagem(String mensagem) {
+    System.out.print("\n" + mensagem);
     mensagem = teclado.nextLine();
+    return mensagem;
+  }
 
+  public static void main(String[] args){
+    int opcao;
+    teclado = new Scanner(System.in);
 
-    System.out.print("");
-    switch (opcao) {
-        case 1 -> System.out.println(criptografar(mensagem));
-        case 2 -> System.out.println(descriptografar(mensagem));
-        default -> System.out.println("Opção não existe.");
-      }
+    do{
+      String resposta = "Essa opção não existe!";
+      opcao = menu();
+
+      resposta = switch (opcao) {
+        case 1 -> criptografar(lerMensagem("Digite sua frase: "));
+        case 2 -> descriptografar(lerMensagem("Digite sua frase: "));
+        case 0 -> "Saindo do programa...";
+        default -> "";
+      };
+
+      System.out.println(resposta + "\n");
+    }while(opcao != 0);
+
 
     teclado.close();
   }
