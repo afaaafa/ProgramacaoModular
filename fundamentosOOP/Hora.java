@@ -39,7 +39,7 @@ public class Hora {
     setSegundos(segundos);
   }
 
-  public Hora increamentar(int horas, int minutos, int segundos) {
+  public Hora incrementar(int horas, int minutos, int segundos) {
     int segundosSoma = this.segundos + segundos;
     int minutosExtra = segundosSoma / 60;
     int segundosRestantes = segundosSoma % 60;
@@ -68,8 +68,8 @@ public class Hora {
 
     Hora hora = new Hora(13, 03, 00);
     Hora hora2 = new Hora(16, 40, 50);
-    Hora hora3 = hora.increamentar(8, 10, 83);
-    Hora hora4 = hora.increamentar(0, 0, 0);
+    Hora hora3 = hora.incrementar(8, 10, 83);
+    Hora hora4 = hora.incrementar(0, 0, 0);
 
     System.out
         .printf("%s está adiante de %s => %b\n", hora.horaFormatada(), hora2.horaFormatada(), hora.isAdiante(hora2));
